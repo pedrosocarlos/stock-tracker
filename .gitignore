@@ -14,3 +14,4 @@ web_modules/
 !.env.example
 
 dist
+coverage
