@@ -21,6 +21,8 @@
     "@types/node": "^24.3.0",
     "eslint-config-love": "^121.0.0",
     "git-commit-msg-linter": "^5.0.8",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.5",
     "typescript": "^5.9.2"
   }
 }
