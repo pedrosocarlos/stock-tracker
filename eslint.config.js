@@ -8,6 +8,6 @@ export default (async function config() {
     },
     {
 		ignores: ["**/temp.js", "config/*", "**/node_modules", "**/dist"],
-	}
+	  }
   ]
 })()
