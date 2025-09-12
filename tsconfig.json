@@ -1,10 +1,17 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",
     "module": "commonjs",
+    "outDir": "./dist",
     "target": "es2023",
     "esModuleInterop": true,
     "allowJs": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "baseUrl": "src",
+    "paths": {
+      "@routes/*": ["main/routes/*"],
+      "@config/*": ["main/config/*"]
+    }
   }
 }
