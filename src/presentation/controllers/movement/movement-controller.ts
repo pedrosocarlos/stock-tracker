@@ -1,10 +1,10 @@
-import type { HttpResponse, HttpRequest, Controller, AddAccount } from './movement-controller-protocols'
+import type { HttpResponse, HttpRequest, Controller, AddMovement } from './movement-controller-protocols'
 import { badRequest, serverError, ok } from '../../helpers/http/http-helper'
 import type { Validation } from '../../protocols/validation'
 
 export class MovementController implements Controller {
   constructor(
-    private readonly addAccount: AddAccount,
+    private readonly addMovement: AddMovement,
     private readonly validation: Validation
   ) { }
 
@@ -16,7 +16,7 @@ export class MovementController implements Controller {
 
       console.log("\n\nrepo\n\n", name, "\n\n")
 
-      const user = await this.addAccount.add({ name })
+      const user = await this.addMovement.add({ name })
 
       return ok({ id: user })
     } catch (error) {

@@ -15,3 +15,7 @@ web_modules/
 
 dist
 coverage
+
+# Banco de dados SQLite
+*.sqlite3
+*.sqlite
