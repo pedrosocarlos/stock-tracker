@@ -3,7 +3,7 @@ import type { Validation } from '../../../presentation/protocols/validation'
 
 export const makeMovementValidation = (): ValidationComposite => {
   const validations: Validation[] = []
-  for (const field of ['name']) {
+  for (const field of ['name', 'idAccount', ]) {
     validations.push(new RequiredFieldValidation(field))
   }
   return new ValidationComposite(validations)

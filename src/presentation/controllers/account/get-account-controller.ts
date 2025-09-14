@@ -10,8 +10,6 @@ export class GetAccountController implements Controller {
 
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
-      console.log("\n\ncontroler\n\n", httpRequest, "\n\n")
-
       const error = this.validation.validate(httpRequest.params)
       if (error != null) { return badRequest(error) }
       const { id } = httpRequest.params

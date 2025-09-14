@@ -12,11 +12,14 @@ export class MovementController implements Controller {
     try {
       const error = this.validation.validate(httpRequest.body)
       if (error != null) { return badRequest(error) }
-      const { name } = httpRequest.body
+      const { name, idAccount, description, type } = httpRequest.body
 
-      console.log("\n\nrepo\n\n", name, "\n\n")
-
-      const user = await this.addMovement.add({ name })
+      const user = await this.addMovement.add({
+        name,
+        id_account:idAccount,
+        description,
+        type
+      })
 
       return ok({ id: user })
     } catch (error) {

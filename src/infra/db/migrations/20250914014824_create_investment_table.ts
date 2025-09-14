@@ -1,8 +1,10 @@
 import type { Knex } from "knex";
 
+// tabela para guardar os investimentos feitos pela conta
+// essa é uma movimentação financeira
 export async function up(knex: Knex): Promise<void> {
-  await knex.schema.createTable('movement', function (table: any) {
-    table.increments('id_movement').primary()
+  await knex.schema.createTable('investment', function (table: any) {
+    table.increments('id_investment').primary()
 
     table.string('name').notNullable()
     table.string('description')
@@ -13,7 +15,7 @@ export async function up(knex: Knex): Promise<void> {
 
     table.timestamp('time_creation', { useTz: false }).defaultTo(knex.fn.now())
 
-    // 0 - payday, 1 - other
+    // 0 - stocks, 1 - other
     table.integer('type').default(0)
 
     // 0 - active, 1 - deleted
@@ -22,5 +24,5 @@ export async function up(knex: Knex): Promise<void> {
 }
 
 export async function down(knex: Knex): Promise<void> {
-  await knex.schema.dropTable('movement')
+  await knex.schema.dropTable('investment')
 }

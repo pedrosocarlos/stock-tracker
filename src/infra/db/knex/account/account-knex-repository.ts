@@ -19,9 +19,7 @@ export class AccountRepository implements AddAccountRepository, LoadAccountByIdR
   async findById(id: number): Promise<AccountModel> {
     const result = await db('account')
       .select('*')
-      .where({ id })
-
-    console.log(result)
+      .where({ id_account: id })
 
     return result[0]
   }
