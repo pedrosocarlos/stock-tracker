@@ -1,7 +1,7 @@
 import type { StockModel, AddStockModel, UpdateStockModel, InsertedStockModel } from '../models/stock'
 
 export interface AddStock {
-  add: (account: AddStockModel) => Promise<InsertedStockModel>
+  add: (account: AddStockModel[]) => Promise<InsertedStockModel>
 }
 
 export interface GetStock {

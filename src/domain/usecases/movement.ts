@@ -1,24 +1,7 @@
-import type { MovementModel } from '../models/movement'
-
-export interface AddMovementModel {
-  name: string
-  description?: string
-  id_account: number
-  type?: number
-  flag_deleted?: number
-}
-
-export interface UpdateMovementModel {
-  id: number
-  name?: string
-  description?: string
-  id_account?: number
-  type?: number
-  flag_deleted?: number
-}
+import type { MovementModel, InsertedMovementModel, UpdateMovementModel, AddMovementModel } from '../models/movement'
 
 export interface AddMovement {
-  add: (account: AddMovementModel) => Promise<MovementModel>
+  add: (account: AddMovementModel) => Promise<InsertedMovementModel>
 }
 
 export interface GetMovement {

@@ -3,7 +3,7 @@ export interface StockModel {
   name: string
   description: string
   ticker: string
-  type: number
+  stock_type: number
   flag_deleted: number
 }
 
@@ -15,7 +15,7 @@ export interface AddStockModel {
   name: string
   description?: string
   ticker: string
-  type: number
+  stock_type: number
   flag_deleted?: number
 }
 
@@ -24,6 +24,12 @@ export interface UpdateStockModel {
   name?: string
   description?: string
   ticker?: string
-  type?: number
+  stock_type?: number
   flag_deleted?: number
+}
+
+export interface StockData {
+  name: string
+  ticker: string
+  stock_type: number
 }

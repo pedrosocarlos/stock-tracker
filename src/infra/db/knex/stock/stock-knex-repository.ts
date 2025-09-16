@@ -1,17 +1,22 @@
-import type { StockModel, InsertedStockModel, AddStockModel, UpdateStockModel } from '../../../../domain/models/stock'
+import type { StockModel, AddStockModel, UpdateStockModel } from '../../../../domain/models/stock'
 import type { GetStockRepository, AddStockRepository, ListStockRepository, UpdateStockRepository, DeleteStockRepository } from '../../../../data/protocols/db/stock/stock-repository'
 
 import { db } from "../../knex"
 
 export class StockRepository implements AddStockRepository, GetStockRepository, ListStockRepository, UpdateStockRepository, DeleteStockRepository {
-  async add(data: AddStockModel): Promise<InsertedStockModel> {
-    const result = await db('stock').insert(data)
-
-    return { id: result[0] }
+  async add(data: AddStockModel[]): Promise<any> {
+    const chunkSize = 55
+    for (let i = 0; i < data.length; i += chunkSize) {
+      const chunk = data.slice(i, i + chunkSize);
+      await db('stocks')
+        .insert(chunk)
+        .onConflict('ticker')
+        .ignore();
+    }
   }
 
   async findById(id: number): Promise<StockModel> {
-    const result = await db('stock')
+    const result = await db('stocks')
       .select('*')
       .where({ id_stock: id })
 
@@ -19,7 +24,7 @@ export class StockRepository implements AddStockRepository, GetStockRepository, 
   }
 
   async list(flagDeleted?: number): Promise<StockModel[] | null> {
-    const result = await db('stock')
+    const result = await db('stocks')
       .select('*')
       .where({ flag_deleted: flagDeleted ?? 0 })
 
@@ -27,14 +32,14 @@ export class StockRepository implements AddStockRepository, GetStockRepository, 
   }
 
   async update(data: UpdateStockModel): Promise<number | null> {
-    const result = await db('stock')
+    const result = await db('stocks')
       .select('*')
       .where({ id_stock: data.id })
       .update({
         name: data.name,
         description: data.description,
         ticker: data.ticker,
-        type: data.type,
+        stock_type: data.stock_type,
         flag_deleted: data.flag_deleted
       })
 
@@ -42,7 +47,7 @@ export class StockRepository implements AddStockRepository, GetStockRepository, 
   }
 
   async delete(id: number): Promise<number> {
-    const result = await db('stock')
+    const result = await db('stocks')
       .select('*')
       .where({ id_stock: id })
       .delete()

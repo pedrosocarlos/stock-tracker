@@ -4,7 +4,7 @@ import type { Knex } from 'knex'
 // essa é uma movimentação financeira
 export async function up(knex: Knex): Promise<void> {
   await knex.schema.createTable('stock_wallet', function (table: any) {
-    table.increments('id_stock_wallet').unsigned().primary()
+    table.increments('id_stock_wallet').unsigned().primary().unique()
 
     table.string('name').notNullable()
     table.string('description')

@@ -1,13 +1,13 @@
-import { MovementController } from '../../../presentation/controllers/movement/movement-controller'
-import { DbAddMovement } from '../../../data/usecases/movement/db-add-movement'
-import { MovementRepository } from '../../../infra/db/knex/movement/movement-knex-repository'
+import { CreateStockController } from '../../../presentation/controllers/stock/create-stock-controller'
+import { DbAddStock } from '../../../data/usecases/stock/db-add-stock'
+import { StockRepository } from '../../../infra/db/knex/stock/stock-knex-repository'
 import type { Controller } from '../../../presentation/protocols'
 import { LogControllerDecorator } from '../../decorators/log-controller-decorator'
-import { makeMovementValidation } from '../movement/movement-validation-factory'
+import { AxiosAdapter } from '../../../infra/axios/axios-adapter'
 
 export const makeStockController = (): Controller => {
-  const movementRepository = new MovementRepository()
-  const dbAddAccount = new DbAddMovement(movementRepository)
-  const movementController = new MovementController(dbAddAccount, makeMovementValidation())
-  return new LogControllerDecorator(movementController)
+  const stockRepository = new StockRepository()
+  const dbAddAccount = new DbAddStock(stockRepository)
+  const stockController = new CreateStockController(dbAddAccount, new AxiosAdapter())
+  return new LogControllerDecorator(stockController)
 }

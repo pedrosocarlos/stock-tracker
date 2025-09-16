@@ -2,7 +2,7 @@ import type { Knex } from 'knex'
 
 export async function up(knex: Knex): Promise<void> {
   await knex.schema.createTable('share_owned', function (table: any) {
-    table.increments('id_share_owned').unsigned().primary()
+    table.increments('id_share_owned').unsigned().primary().unique()
 
     // valor que foi pago na ação
     table.float('value').unsigned().notNullable()

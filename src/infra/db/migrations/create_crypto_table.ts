@@ -2,11 +2,11 @@ import type { Knex } from 'knex'
 
 export async function up(knex: Knex): Promise<void> {
   await knex.schema.createTable('crypto', function (table: any) {
-    table.increments('id_crypto').unsigned().primary()
+    table.increments('id_crypto').unsigned().primary().unique()
 
     table.string('name').notNullable()
     table.string('description')
-    table.string('ticker').notNullable()
+    table.string('ticker').notNullable().unique()
 
     // 0 - other, 1 - main coin, 2 - outcoin
     table.tinyint('crypto_type').unsigned().default(0)

@@ -2,7 +2,7 @@ import type { Knex } from 'knex'
 
 export async function up(knex: Knex): Promise<void> {
   await knex.schema.createTable('quotation', function (table: any) {
-    table.increments('id_quotation').unsigned().primary()
+    table.increments('id_quotation').unsigned().primary().unique()
 
     //valor da cotação atual
     table.decimal('value', 12, 3).unsigned().notNullable()

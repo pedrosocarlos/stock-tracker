@@ -1,7 +1,7 @@
 import type { StockModel, InsertedStockModel, AddStockModel, UpdateStockModel } from '../../../../domain/models/stock'
 
 export interface AddStockRepository {
-  add: (data: AddStockModel) => Promise<InsertedStockModel>
+  add: (data: AddStockModel[]) => Promise<InsertedStockModel>
 }
 
 export interface GetStockRepository {

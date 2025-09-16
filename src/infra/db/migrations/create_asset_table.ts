@@ -4,7 +4,7 @@ import type { Knex } from 'knex'
 // usado para bens que representam aquisições diversas de ações
 export async function up(knex: Knex): Promise<void> {
   await knex.schema.createTable('asset', function (table: any) {
-    table.increments('id_asset').unsigned().primary()
+    table.increments('id_asset').unsigned().primary().unique()
 
     table.string('name').notNullable()
     table.string('description')
