@@ -1,29 +1,29 @@
-export interface MovementModel {
+export interface StockModel {
   id: number
   name: string
   description: string
-  id_account: number
+  ticker: string
   type: number
   flag_deleted: number
 }
 
-export interface InsertedMovementModel {
+export interface InsertedStockModel {
   id: number
 }
 
-export interface AddMovementModel {
+export interface AddStockModel {
   name: string
   description?: string
-  id_account: number
-  type?: number
+  ticker: string
+  type: number
   flag_deleted?: number
 }
 
-export interface UpdateMovementModel {
+export interface UpdateStockModel {
   id: number
   name?: string
   description?: string
-  id_account?: number
+  ticker?: string
   type?: number
   flag_deleted?: number
 }

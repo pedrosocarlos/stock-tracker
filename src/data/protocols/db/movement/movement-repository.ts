@@ -1,8 +1,8 @@
-import type { MovementModel } from '../../../../domain/models/movement'
+import type { MovementModel, InsertedMovementModel } from '../../../../domain/models/movement'
 import type { AddMovementModel, UpdateMovementModel } from '../../../../domain/usecases/movement'
 
 export interface AddMovementRepository {
-  add: (movementData: AddMovementModel) => Promise<MovementModel>
+  add: (movementData: AddMovementModel) => Promise<InsertedMovementModel>
 }
 
 export interface GetMovementRepository {
@@ -14,7 +14,7 @@ export interface ListMovementRepository {
 }
 
 export interface UpdateMovementRepository {
-  update: (data: UpdateMovementModel) => Promise<MovementModel | null>
+  update: (data: UpdateMovementModel) => Promise<number | null>
 }
 
 export interface DeleteMovementRepository {

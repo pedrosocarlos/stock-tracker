@@ -30,7 +30,7 @@ export interface ListMovement {
 }
 
 export interface UpdateMovement {
-  update: (id: number) => Promise<MovementModel[] | null>
+  update: (data: UpdateMovementModel) => Promise<number | null>
 }
 
 export interface DeleteMovement {

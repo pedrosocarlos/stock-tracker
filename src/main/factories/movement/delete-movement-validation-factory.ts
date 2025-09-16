@@ -1,4 +1,4 @@
-import { ValidationComposite, RequiredFieldValidation } from '../../../presentation/helpers/validators'
+import { ValidationComposite, RequiredFieldValidation, NumberValidation } from '../../../presentation/helpers/validators'
 import type { Validation } from '../../../presentation/protocols/validation'
 
 export const deleteMovementValidation = (): ValidationComposite => {
@@ -6,5 +6,10 @@ export const deleteMovementValidation = (): ValidationComposite => {
   for (const field of ['id']) {
     validations.push(new RequiredFieldValidation(field))
   }
+
+  for (const field of ['id']) {
+    validations.push(new NumberValidation(field))
+  }
+
   return new ValidationComposite(validations)
 }
