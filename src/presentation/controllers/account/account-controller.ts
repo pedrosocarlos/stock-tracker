@@ -12,9 +12,9 @@ export class AccountController implements Controller {
     try {
       const error = this.validation.validate(httpRequest.body)
       if (error != null) { return badRequest(error) }
-      const { name } = httpRequest.body
+      const { name, type } = httpRequest.body
 
-      const user = await this.addAccount.add({ name })
+      const user = await this.addAccount.add({ name, type })
 
       return ok({ id: user })
     } catch (error) {

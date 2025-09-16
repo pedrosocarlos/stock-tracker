@@ -1,4 +1,4 @@
-import type { AddMovement, AddMovementModel, MovementModel, AddMovementRepository } from './db-add-movement-protocols'
+import type { AddMovement, AddMovementModel, MovementModel, AddMovementRepository } from './db-movement-protocols'
 
 export class DbAddMovement implements AddMovement {
   constructor (

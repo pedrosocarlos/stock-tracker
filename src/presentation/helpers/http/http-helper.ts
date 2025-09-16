@@ -1,4 +1,4 @@
-import { HttpResponse } from '../../protocols/http'
+import type { HttpResponse } from '../../protocols/http'
 import { ServerError, UnauthorizedError } from '../../errors'
 
 export const badRequest = (error: Error): HttpResponse => ({
@@ -23,5 +23,10 @@ export const ok = (data: any): HttpResponse => ({
 
 export const okNoText = (): HttpResponse => ({
   statusCode: 201,
+  body: {}
+})
+
+export const empty = (): HttpResponse => ({
+  statusCode: 204,
   body: {}
 })

@@ -11,5 +11,5 @@ export interface AddAccount {
 }
 
 export interface GetAccount {
-  get: (id: number) => Promise<AccountModel>
+  get: (id: number) => Promise<AccountModel | null>
 }

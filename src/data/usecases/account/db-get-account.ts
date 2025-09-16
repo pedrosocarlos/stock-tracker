@@ -5,7 +5,7 @@ export class DbGetAccount implements GetAccount {
     private readonly addAccountRepository: LoadAccountByIdRepository
   ) {}
 
-  async get (id: number): Promise<AccountModel> {
+  async get (id: number): Promise<AccountModel | null> {
     const account = await this.addAccountRepository.findById(id)
     return account
   }

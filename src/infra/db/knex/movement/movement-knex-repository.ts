@@ -1,11 +1,10 @@
-import type { AddMovementRepository } from '../../../../data/protocols/db/movement/add-movement-repository'
-import type { AddMovementModel } from '../../../../domain/usecases/movement'
+import type { AddMovementModel, UpdateMovementModel } from '../../../../domain/usecases/movement'
 import type { MovementModel } from '../../../../domain/models/movement'
-import type { GetMovementRepository } from '../../../../data/protocols/db/movement/get-movement-repository'
+import type { GetMovementRepository, AddMovementRepository, ListMovementRepository, UpdateMovementRepository, DeleteMovementRepository } from '../../../../data/protocols/db/movement/movement-repository'
 
 import { db } from "../../knex"
 
-export class MovementRepository implements AddMovementRepository, GetMovementRepository {
+export class MovementRepository implements AddMovementRepository, GetMovementRepository, ListMovementRepository, UpdateMovementRepository, DeleteMovementRepository {
   async add(movementData: AddMovementModel): Promise<MovementModel> {
     const result = await db('movement').insert(movementData)
 
@@ -21,5 +20,31 @@ export class MovementRepository implements AddMovementRepository, GetMovementRep
       .where({ id_movement: id })
 
     return result[0]
+  }
+
+  async list(flagDeleted?: number): Promise<MovementModel[] | null> {
+    const result = await db('movement')
+      .select('*')
+      .where({ flag_deleted: flagDeleted ?? 0 })
+
+    return result
+  }
+
+  async update(data: UpdateMovementModel): Promise<MovementModel | null> {
+    const result = await db('movement')
+      .select('*')
+      .where({ id_movement: data.id })
+      .update(data)
+
+    return result[0]
+  }
+
+  async delete(id: number): Promise<number> {
+    const result = await db('movement')
+      .select('*')
+      .where({ id_movement: id })
+      .delete()
+
+    return result
   }
 }

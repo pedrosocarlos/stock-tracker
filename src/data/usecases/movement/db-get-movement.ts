@@ -1,12 +1,12 @@
-import type { GetMovement, MovementModel, GetMovementRepository } from './db-add-movement-protocols'
+import type { GetMovement, MovementModel, GetMovementRepository } from './db-movement-protocols'
 
 export class DbGetMovement implements GetMovement {
   constructor (
-    private readonly addMovementRepository: GetMovementRepository
+    private readonly getMovementRepository: GetMovementRepository
   ) {}
 
-  async get (id: number): Promise<MovementModel> {
-    const movement = await this.addMovementRepository.findById(id)
+  async get (id: number): Promise<MovementModel | null> {
+    const movement = await this.getMovementRepository.findById(id)
     return movement
   }
 }
