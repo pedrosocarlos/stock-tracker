@@ -1,5 +1,4 @@
-import type { AddMovementModel, UpdateMovementModel } from '../../../../domain/usecases/movement'
-import type { MovementModel, InsertedMovementModel } from '../../../../domain/models/movement'
+import type { MovementModel, InsertedMovementModel, AddMovementModel, UpdateMovementModel } from '../../../../domain/models/movement'
 import type { GetMovementRepository, AddMovementRepository, ListMovementRepository, UpdateMovementRepository, DeleteMovementRepository } from '../../../../data/protocols/db/movement/movement-repository'
 
 import { db } from "../../knex"
@@ -29,7 +28,6 @@ export class MovementRepository implements AddMovementRepository, GetMovementRep
 
   async update(data: UpdateMovementModel): Promise<number | null> {
     const result = await db('movement')
-      .select('*')
       .where({ id_movement: data.id })
       .update({
         name: data.name,

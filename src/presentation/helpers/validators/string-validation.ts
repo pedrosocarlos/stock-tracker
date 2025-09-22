@@ -12,7 +12,7 @@ export class StringValidation implements Validation {
     const isValid = typeof input[this.fieldName] === 'string' && input[this.fieldName].trim().length > 0
 
     if (!isValid) {
-      return new TypeParamError(this.fieldName)
+      return new TypeParamError(this.fieldName, 'string')
     }
   }
 }

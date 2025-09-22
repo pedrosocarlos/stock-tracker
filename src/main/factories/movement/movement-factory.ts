@@ -7,7 +7,7 @@ import { makeMovementValidation } from './movement-validation-factory'
 
 export const makeMovementController = (): Controller => {
   const movementRepository = new MovementRepository()
-  const dbAddAccount = new DbAddMovement(movementRepository)
-  const movementController = new MovementController(dbAddAccount, makeMovementValidation())
+  const dbAddMovement = new DbAddMovement(movementRepository)
+  const movementController = new MovementController(dbAddMovement, makeMovementValidation())
   return new LogControllerDecorator(movementController)
 }

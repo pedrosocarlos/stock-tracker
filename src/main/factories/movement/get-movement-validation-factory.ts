@@ -1,4 +1,4 @@
-import { ValidationComposite, RequiredFieldValidation, NumberValidation } from '../../../presentation/helpers/validators'
+import { ValidationComposite, RequiredFieldValidation, StringNumberValidation } from '../../../presentation/helpers/validators'
 import type { Validation } from '../../../presentation/protocols/validation'
 
 export const getMovementValidation = (): ValidationComposite => {
@@ -8,7 +8,7 @@ export const getMovementValidation = (): ValidationComposite => {
   }
 
   for (const field of ['id']) {
-    validations.push(new NumberValidation(field))
+    validations.push(new StringNumberValidation(field))
   }
 
   return new ValidationComposite(validations)

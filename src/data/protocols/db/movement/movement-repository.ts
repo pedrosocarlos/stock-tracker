@@ -1,5 +1,4 @@
-import type { MovementModel, InsertedMovementModel } from '../../../../domain/models/movement'
-import type { AddMovementModel, UpdateMovementModel } from '../../../../domain/usecases/movement'
+import type { MovementModel, InsertedMovementModel, AddMovementModel, UpdateMovementModel } from '../../../../domain/models/movement'
 
 export interface AddMovementRepository {
   add: (movementData: AddMovementModel) => Promise<InsertedMovementModel>

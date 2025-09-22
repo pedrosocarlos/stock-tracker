@@ -1,7 +1,7 @@
 import type { Validation } from '../../protocols/validation'
 import { TypeParamError } from '../../errors'
 
-export class NumberValidation implements Validation {
+export class StringNumberValidation implements Validation {
   constructor (
     private readonly fieldName: string
   ) {}
@@ -9,7 +9,9 @@ export class NumberValidation implements Validation {
   validate (input: any): Error | undefined {
     if(input[this.fieldName] == null) { return }
 
-    const isValid = typeof input[this.fieldName] === 'number' && !isNaN(input[this.fieldName])
+    const value = input[this.fieldName]
+
+    const isValid = (typeof value === 'number' && !isNaN(value)) || (typeof value === 'string' && value.trim() !== '' && !isNaN(Number(value)))
 
     if (!isValid) {
       return new TypeParamError(this.fieldName, 'number')
