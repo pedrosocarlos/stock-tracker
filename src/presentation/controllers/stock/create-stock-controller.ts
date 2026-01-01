@@ -10,7 +10,6 @@ export class CreateStockController implements Controller {
 
   async handle(): Promise<HttpResponse> {
     try {
-      
       const stocks = await this.axiosHelper.getStocks()
 
       const stocksSorted = stocks.sort((a, b) => a.ticker.localeCompare(b.ticker))

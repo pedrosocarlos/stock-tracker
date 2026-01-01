@@ -4,7 +4,6 @@ import * as cheerio from 'cheerio'
 import type { Axios } from '../../data/protocols/axios/axios'
 import type { StockData } from 'domain/models/stock'
 
-
 export class AxiosAdapter implements Axios {
   async getStocks(): Promise<StockData[]> {
     try {
@@ -32,6 +31,35 @@ export class AxiosAdapter implements Axios {
       })
 
       return stocks
+    } catch (err) {
+      console.error("Erro ao buscar as ações:", err)
+      return []
+    }
+  }
+
+  async getQuotations(ticker: string): Promise<any> {
+    try {
+      const { data } = await axios.get(`https://www.investsite.com.br/principais_indicadores.php?cod_negociacao=${ticker}`)
+      const $ = cheerio.load(data)
+
+      let currentQuote: any[] = []
+
+      let currentDate = ''
+
+      // Seleciona o elemento de cotação
+      $("#tabela_resumo_empresa > tbody > tr:nth-child(10) > td.direita.text-end").each((_, element) => {
+        currentQuote = $(element).text().split(" ")
+      })
+
+      // Seleciona o elemento da data de cotação
+      $("#tabela_resumo_empresa > tbody > tr:nth-child(8) > td.direita.text-end").each((_, element) => {
+        currentDate = $(element).text().split("/").reverse().join("-")
+      })
+
+      return {
+        value: Number(currentQuote[1].replace(',', '.')),
+        date: currentDate
+      }
     } catch (err) {
       console.error("Erro ao buscar as ações:", err)
       return []
