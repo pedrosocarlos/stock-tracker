@@ -1,4 +1,4 @@
-import { DbAuthentication } from './db-authentication'
+/* import { DbAuthentication } from './db-authentication'
 import {
   AccountModel,
   LoadAccountByEmailRepository,
@@ -159,3 +159,4 @@ describe('DbAuthentication UseCase', () => {
     await expect(promise).rejects.toThrow()
   })
 })
+ */

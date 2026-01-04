@@ -1,5 +1,5 @@
 import type { HttpResponse, Controller, AddStock } from '../stock/stock-controller-protocols'
-import { serverError, okNoText } from '../../helpers/http/http-helper'
+import { serverError, noContent } from '../../helpers/http/http-helper'
 import type { AxiosAdapter } from '../../../infra/axios/axios-adapter'
 
 export class CreateStockController implements Controller {
@@ -16,7 +16,7 @@ export class CreateStockController implements Controller {
 
       await this.addStock.add(stocksSorted)
 
-      return okNoText()
+      return noContent()
     } catch (error) {
       return serverError(error)
     }

@@ -1,0 +1,8 @@
+export type * from '../../protocols/db/../../../domain/usecases/stock-wallet'
+export type * from '../../protocols/db/../../../domain/models/stock-wallet'
+export type * from '../../protocols/db/stock-wallet/add-stock-wallet-repository'
+export type * from '../../protocols/db/stock-wallet/get-stock-wallet-repository'
+export type * from '../../protocols/db/stock-wallet/list-stock-wallets-repository'
+export type * from '../../protocols/db/stock-wallet/update-stock-wallet-repository'
+export type * from '../../protocols/db/stock-wallet/delete-stock-wallet-repository'
+export type * from '../../protocols/db/stock-wallet/get-stock-wallet-by-name-repository'

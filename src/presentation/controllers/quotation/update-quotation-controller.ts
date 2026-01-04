@@ -1,5 +1,5 @@
 import type { HttpResponse, Controller, UpdateQuotation, AddQuotationModel } from './quotation-controller-protocols'
-import { serverError, okNoText } from '../../helpers/http/http-helper'
+import { serverError, noContent } from '../../helpers/http/http-helper'
 
 export class UpdateQuotationController implements Controller {
   constructor(private readonly updateQuotation: UpdateQuotation) {}
@@ -7,7 +7,7 @@ export class UpdateQuotationController implements Controller {
   async handle(httpRequest: any): Promise<HttpResponse> {
     try {
       await this.updateQuotation.update(httpRequest.id, httpRequest)
-      return okNoText()
+      return noContent()
     } catch (error) {
       return serverError(error)
     }

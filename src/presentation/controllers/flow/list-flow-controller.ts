@@ -1,5 +1,5 @@
 import type { HttpResponse, Controller, ListFlow } from '../flow/flow-controller-protocols'
-import { serverError, ok,empty } from '../../helpers/http/http-helper'
+import { serverError, ok, noContent } from '../../helpers/http/http-helper'
 
 export class ListFlowController implements Controller {
   constructor(
@@ -9,7 +9,7 @@ export class ListFlowController implements Controller {
   async handle(): Promise<HttpResponse> {
     try {
       const list = await this.listFlow.list()
-      if(list == null) { return empty()}
+      if(list == null) { return noContent()}
 
       return ok(list)
     } catch (error) {

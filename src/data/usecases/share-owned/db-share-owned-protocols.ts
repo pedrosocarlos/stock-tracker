@@ -1,0 +1,8 @@
+export type * from '../../../domain/usecases/share-owned'
+export type * from '../../../domain/models/share-owned'
+export type * from '../../protocols/db/share-owned/add-share-owned-repository'
+export type * from '../../protocols/db/share-owned/get-share-owned-repository'
+export type * from '../../protocols/db/share-owned/list-shares-owned-repository'
+export type * from '../../protocols/db/share-owned/update-share-owned-repository'
+export type * from '../../protocols/db/share-owned/delete-share-owned-repository'
+export type * from '../../protocols/db/share-owned/get-share-owned-by-stock-and-wallet-repository'

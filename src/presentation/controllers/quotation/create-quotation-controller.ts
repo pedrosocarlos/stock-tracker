@@ -1,5 +1,5 @@
 import type { HttpResponse, Controller, AddQuotation } from './quotation-controller-protocols'
-import { serverError, okNoText } from '../../helpers/http/http-helper'
+import { serverError, noContent } from '../../helpers/http/http-helper'
 import type { AxiosAdapter } from '../../../infra/axios/axios-adapter'
 
 export class CreateQuotationController implements Controller {
@@ -13,7 +13,7 @@ export class CreateQuotationController implements Controller {
       const quotations = await this.axiosHelper.getQuotations("CEAB3")
       console.log(quotations)
       /* await this.addQuotation.add(quotations) */
-      return okNoText()
+      return noContent()
     } catch (error) {
       return serverError(error)
     }

@@ -1,6 +1,7 @@
 import type { HttpResponse, HttpRequest, Controller, DeleteMovement } from './movement-controller-protocols'
-import { badRequest, serverError, okNoText, empty } from '../../helpers/http/http-helper'
+import { badRequest, serverError, noContent, notFound } from '../../helpers/http/http-helper'
 import type { Validation } from '../../protocols/validation'
+import { NotFoundError } from '../../errors/not-found-error'
 
 export class DeleteMovementController implements Controller {
   constructor(
@@ -14,10 +15,10 @@ export class DeleteMovementController implements Controller {
       if (error != null) { return badRequest(error) }
       const { id } = httpRequest.params
 
-      const movement = await this.deleteMovement.delete(id)
-      if(movement === 0) { return empty()}
+      const result = await this.deleteMovement.delete(id)
+      if(result === 0) { return notFound(new NotFoundError('movement'))}
 
-      return okNoText()
+      return noContent()
     } catch (error) {
       return serverError(error)
     }

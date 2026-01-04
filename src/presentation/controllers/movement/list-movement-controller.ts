@@ -1,5 +1,5 @@
 import type { HttpResponse, HttpRequest, Controller, ListMovement } from './movement-controller-protocols'
-import { serverError, ok,empty } from '../../helpers/http/http-helper'
+import { serverError, ok, noContent } from '../../helpers/http/http-helper'
 
 export class ListMovementController implements Controller {
   constructor(
@@ -9,7 +9,7 @@ export class ListMovementController implements Controller {
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
       const movement = await this.listMovement.list()
-      if(movement == null) { return empty()}
+      if(movement == null) { return noContent()}
 
       return ok(movement)
     } catch (error) {

@@ -1,5 +1,5 @@
 import type { HttpResponse, HttpRequest, Controller, UpdateFlow } from './flow-controller-protocols'
-import { badRequest, serverError, empty } from '../../helpers/http/http-helper'
+import { badRequest, serverError, noContent } from '../../helpers/http/http-helper'
 import type { Validation } from '../../protocols/validation'
 
 export class UpdateFlowController implements Controller {
@@ -30,7 +30,7 @@ export class UpdateFlowController implements Controller {
         flag_deleted: flagDeleted
       })
 
-      return empty()
+      return noContent()
     } catch (error) {
       return serverError(error)
     }

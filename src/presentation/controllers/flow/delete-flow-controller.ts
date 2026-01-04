@@ -1,6 +1,7 @@
 import type { HttpResponse, HttpRequest, Controller, DeleteFlow } from './flow-controller-protocols'
-import { badRequest, serverError, okNoText, empty } from '../../helpers/http/http-helper'
+import { badRequest, serverError, noContent, notFound } from '../../helpers/http/http-helper'
 import type { Validation } from '../../protocols/validation'
+import { NotFoundError } from '../../errors/not-found-error'
 
 export class DeleteFlowController implements Controller {
   constructor(
@@ -14,10 +15,10 @@ export class DeleteFlowController implements Controller {
       if (error != null) { return badRequest(error) }
       const { id } = httpRequest.params
 
-      const flow = await this.deleteFlow.delete(id)
-      if(flow === 0) { return empty()}
+      const result = await this.deleteFlow.delete(id)
+      if(result === 0) { return notFound(new NotFoundError('flow'))}
 
-      return okNoText()
+      return noContent()
     } catch (error) {
       return serverError(error)
     }

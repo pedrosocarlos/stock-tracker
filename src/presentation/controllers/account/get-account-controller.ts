@@ -1,5 +1,5 @@
 import type { HttpResponse, HttpRequest, Controller, GetAccount } from './account-controller-protocols'
-import { badRequest, serverError, ok, empty } from '../../helpers/http/http-helper'
+import { badRequest, serverError, ok, noContent } from '../../helpers/http/http-helper'
 import type { Validation } from '../../protocols/validation'
 
 export class GetAccountController implements Controller {
@@ -15,7 +15,7 @@ export class GetAccountController implements Controller {
       const { id } = httpRequest.params
 
       const user = await this.getAccount.get(id)
-      if(user == null) { return empty()}
+      if(user == null) { return noContent()}
 
       return ok(user)
     } catch (error) {

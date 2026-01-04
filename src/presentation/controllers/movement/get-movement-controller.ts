@@ -1,5 +1,5 @@
 import type { HttpResponse, HttpRequest, Controller, GetMovement } from './movement-controller-protocols'
-import { badRequest, serverError, ok, empty } from '../../helpers/http/http-helper'
+import { badRequest, serverError, ok, noContent } from '../../helpers/http/http-helper'
 import type { Validation } from '../../protocols/validation'
 
 export class GetMovementController implements Controller {
@@ -15,7 +15,7 @@ export class GetMovementController implements Controller {
       const { id } = httpRequest.params
 
       const movement = await this.getMovement.get(id)
-      if(movement == null) { return empty()}
+      if(movement == null) { return noContent()}
 
       return ok(movement)
     } catch (error) {

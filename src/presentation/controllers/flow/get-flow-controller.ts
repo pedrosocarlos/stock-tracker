@@ -1,5 +1,5 @@
 import type { HttpResponse, HttpRequest, Controller, GetFlow } from './flow-controller-protocols'
-import { badRequest, serverError, ok, empty } from '../../helpers/http/http-helper'
+import { badRequest, serverError, ok, noContent } from '../../helpers/http/http-helper'
 import type { Validation } from '../../protocols/validation'
 
 export class GetFlowController implements Controller {
@@ -15,7 +15,7 @@ export class GetFlowController implements Controller {
       const { id } = httpRequest.params
 
       const flow = await this.getFlow.get(id)
-      if(flow == null) { return empty()}
+      if(flow == null) { return noContent()}
 
       return ok(flow)
     } catch (error) {

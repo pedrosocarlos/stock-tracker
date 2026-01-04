@@ -11,6 +11,16 @@ export const unauthorized = (): HttpResponse => ({
   body: new UnauthorizedError()
 })
 
+export const notFound = (error: Error): HttpResponse => ({
+  statusCode: 404,
+  body: error
+})
+
+export const conflict = (error: Error): HttpResponse => ({
+  statusCode: 409,
+  body: error
+})
+
 export const serverError = (error: Error): HttpResponse => ({
   statusCode: 500,
   body: new ServerError(error.stack ?? "nothing to show")
@@ -21,12 +31,12 @@ export const ok = (data: any): HttpResponse => ({
   body: data
 })
 
-export const okNoText = (): HttpResponse => ({
+export const created = (data: any): HttpResponse => ({
   statusCode: 201,
-  body: {}
+  body: data
 })
 
-export const empty = (): HttpResponse => ({
+export const noContent = (): HttpResponse => ({
   statusCode: 204,
   body: {}
 })

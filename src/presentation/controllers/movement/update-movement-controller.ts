@@ -1,5 +1,5 @@
 import type { HttpResponse, HttpRequest, Controller, UpdateMovement } from './movement-controller-protocols'
-import { badRequest, serverError, empty } from '../../helpers/http/http-helper'
+import { badRequest, serverError, noContent } from '../../helpers/http/http-helper'
 import type { Validation } from '../../protocols/validation'
 
 export class UpdateMovementController implements Controller {
@@ -23,7 +23,7 @@ export class UpdateMovementController implements Controller {
         flag_deleted: flagDeleted
       })
 
-      return empty()
+      return noContent()
     } catch (error) {
       return serverError(error)
     }
